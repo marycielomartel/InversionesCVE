@@ -1,0 +1,42 @@
+<div class="card-header">
+    <h2 class="card-header text-center">Catalogo de contratos</h2>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-panel header="CONTRATO" >
+    <p-button (click)="crearContrato()" label="Crear Contrato" styleClass="p-button-success m-3"></p-button>
+    <p-table [value]="contratos" [rows]="10" [paginator]="true" [totalRecords]="totalRecords">
+        <ng-template pTemplate="header"> 
+            <tr>
+                <th>codigo</th>
+                <th>tipo</th>
+                <th>nombre</th>
+                <th>estado</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contrato>
+            <tr>
+                <td>{{ contrato.codigo }}</td>
+                <td>{{ contrato.tipo }}</td>
+                <td>{{ contrato.nombre }}</td>
+                <td>{{ contrato.estado_nombre }}</td>
+    
+                <td>
+                    <p-button (click)="eliminarContrato(contrato.id)" label="Eliminar" styleClass="p-button-danger"></p-button>
+                    &nbsp;
+                    <p-button (click)="actualizarContrato(contrato.id)" label="Actualizar" styleClass="p-button-info"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+<p-dialog header="Crear Contrato" [(visible)]="visible" appendTo="body">
+    <p>
+        CODIGO:&nbsp;<input type="text" pInputText [(ngModel)]="contratoNueva.codigo" /><br/>
+        TIPO:&nbsp;<input type="text" pInputText [(ngModel)]="contratoNueva.tipo" /><br/>
+        NOMBRE:&nbsp;<input type="text" pInputText [(ngModel)]="contratoNueva.nombre" /><br/>
+        ESTADO:&nbsp;<p-dropdown [options]="listaContrato" [(ngModel)]="contratoSeleccionado" placeholder="Seleccione un contrato" [editable]="true" optionLabel="nombre"></p-dropdown><br/>
+        <p-button (click)="guardarContrato()" label="Guardar"></p-button>
+    </p>
+</p-dialog>

@@ -1,0 +1,40 @@
+<br>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-panel header="USUARIO" >
+<p-button (click)="crearUsuario()" label="Crear Usuario" styleClass="p-button-success"></p-button>
+
+<p-table [value]="usuarios">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>correo Electronico</th>
+            <th>contrasena</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Usuarios>
+        <tr>
+            <td>{{ Usuarios.nombre }}</td>
+            <td>{{ Usuarios.apellidos }}</td>
+            <td>{{ Usuarios.correo_electronico }}</td>
+            <td>{{ Usuarios.contrasena }}</td>
+
+            <td>
+                <p-button (click)="eliminarUsuario(Usuarios.id)" label="Eliminar" styleClass="p-button-danger"></p-button>
+                &nbsp;
+                <p-button (click)="actualizarUsuario(Usuarios.id)" label="Actualizar" styleClass="p-button-info"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-panel>
+<p-dialog header="Crear Usuario" [(visible)]="visible" appendTo="body">
+    <p>
+        Nombre:&nbsp;<input type="text" pInputText [(ngModel)]="usuarioNueva.nombre" /><br/>
+        Apellidos:&nbsp;<input type="text" pInputText [(ngModel)]="usuarioNueva.apellidos" /><br/>
+        Correo Electronico:&nbsp;<input type="text" pInputText [(ngModel)]="usuarioNueva.correo_electronico" /><br/>
+        Contraseña:&nbsp;<input type="text" pInputText [(ngModel)]="usuarioNueva.contrasena" /><br/>
+        <p-button (click)="guardarUsuario()" label="Guardar"></p-button>
+    </p>
+</p-dialog>

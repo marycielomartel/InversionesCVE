@@ -1,0 +1,99 @@
+<div class="card-header">
+    <h2 class="card-header text-center">Lista de Clientes</h2>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-panel >
+    <div class="container-fluid" [@estadoFiltrar] = stateName>
+        <form actions="">
+            <div class="d-flex">
+            <div class="d-flex">
+                <input type="text" class="form-control me-3" placeholder="Nombre del cliente">
+                <input type="text" class="form-control me-3" placeholder="Departamento">
+                <input type="text" class="form-control me-4" size="60" placeholder="Provincia">
+            </div>
+            <button  (click)="mostrarFiltrar();" class="btn btn-danger" >&times;</button>
+            </div>
+        </form>     
+    </div>
+<p-button (click)="crearCliente()" label="Crear Cliente" styleClass="p-button-success m-3"></p-button>
+
+<p-table [value]="clientes">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>Departamento</th>
+            <th>Provincia</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente>
+        <tr>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.DNI }}</td>
+            <td>{{ cliente.departamento }}</td>
+            <td>{{ cliente.provincia }}</td>
+            <td>{{ cliente.fecha }}</td>
+            <td>{{ cliente.estado_nombre }}</td>
+            <td>
+                <p-button (click)="eliminarCliente(cliente.id)" label="Eliminar" styleClass="p-button-danger"></p-button>
+                &nbsp;
+                <p-button (click)="actualizarCliente(cliente.id)" label="Actualizar" styleClass="p-button-info"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<div class="card-footer d-flex justify-content-between pt-4">
+    <div class="d-flex">
+    <div class="selector me-3">
+        <select name="" id="" class="form-select">
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="75">75</option>
+            <option value="100">100</option>
+            
+        </select>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+    </nav>
+    </div>
+    <div class="botones">
+        <button class="btn btn-info me-2" (click)="mostrarFiltrar();"> Filtro</button>
+        <button class="btn btn-success me-2">Imprimir</button>
+
+    </div>
+</div>
+</p-panel>
+<p-dialog header="Crear Cliente" [(visible)]="visible" appendTo="body">
+    <p>
+        NOMBRE:&nbsp;<input type="text" pInputText [(ngModel)]="clienteNueva.nombre" /><br/>
+        DNI:&nbsp;<input type="text" pInputText [(ngModel)]="clienteNueva.DNI" /><br/>
+        DEPARTAMENTO:&nbsp;<input type="text" pInputText [(ngModel)]="clienteNueva.departamento" /><br/>
+        PROVINCIA:&nbsp;<input type="text" pInputText [(ngModel)]="clienteNueva.provincia" /><br/>
+        Fecha:&nbsp;<p-calendar [(ngModel)]="clienteNueva.fecha" dateFormat="d/m/yy" dataType="string" appendTo="body" [showTime]="true" [showSeconds]="true"></p-calendar><br/>
+        ESTADO:&nbsp;<p-dropdown [options]="listaEstado" [(ngModel)]="estadoSeleccionado" placeholder="Seleccione un estado" [editable]="true" optionLabel="nombre"></p-dropdown><br/>
+
+        <p-button (click)="guardarCliente()" label="Guardar"></p-button>
+    </p>
+</p-dialog>

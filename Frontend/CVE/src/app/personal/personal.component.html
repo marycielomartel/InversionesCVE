@@ -1,0 +1,38 @@
+<div class="card-header">
+    <h2 class="card-header text-center">Catalogo de Personal</h2>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-panel >
+<p-button (click)="crearPersonal()" label="Crear Personal" styleClass="p-button-success m-3"></p-button>
+<p-table [value]="personales">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Cargo</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Personal>
+        <tr>
+            <td>{{ Personal.nombre }}</td>
+            <td>{{ Personal.edad }}</td>
+            <td>{{ Personal.cargo }}</td>
+
+            <td>
+                <p-button (click)="eliminarPersonal(Personal.id)" label="Eliminar" styleClass="p-button-danger"></p-button>
+                &nbsp;
+                <p-button (click)="actualizarPersonal(Personal.id)" label="Actualizar" styleClass="p-button-info"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-panel>
+<p-dialog header="Crear Personal" [(visible)]="visible" appendTo="body">
+    <p>
+        PERSONAL:&nbsp;<input type="text" pInputText [(ngModel)]="personalNueva.nombre" /><br/>
+        EDAD:&nbsp;<input type="text" pInputText [(ngModel)]="personalNueva.edad" /><br/>
+        CARGO:&nbsp;<input type="text" pInputText [(ngModel)]="personalNueva.cargo" /><br/>
+        <p-button (click)="guardarPersonal()" label="Guardar"></p-button>
+    </p>
+</p-dialog>

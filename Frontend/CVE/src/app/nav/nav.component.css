@@ -1,0 +1,28 @@
+/* Estilos personalizados para la barra de navegación */
+.navbar-brand {
+    font-weight: bold;
+  }
+  .navbar-nav .nav-item {
+    margin-right: 15px;
+  }
+  .navbar-nav .nav-item:last-child {
+    margin-right: 0;
+  }
+  .navbar-toggler-icon {
+    background-color: white;
+  }
+  .navbar-nav a {
+    color: white;
+  }
+  .navbar-nav a:hover {
+    color: yellow;
+  }
+  /* Estilos para los enlaces de autenticación */
+  .navbar-nav.auth-links {
+    display: flex;
+    align-items: center;
+  }
+  .navbar-nav.auth-links .nav-item {
+    margin-left: 15px;
+  }
+  

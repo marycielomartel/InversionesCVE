@@ -1,0 +1,51 @@
+<div class="card-header">
+    <h2 class="card-header text-center">Catalogo de Facturas</h2>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-panel >
+<p-button (click)="crearFactura()" label="Crear Factura" styleClass="p-button-success m-3"></p-button>
+
+<p-table [value]="facturas">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ruc</th>
+            <th>nombre</th>
+            <th>descripcion</th>
+            <th>fecha</th>
+            <th>precio</th>
+            <th>localidad</th>
+            <th>estado</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-facturas>
+        <tr>
+            <td>{{ facturas.ruc }}</td>
+            <td>{{ facturas.nombre }}</td>
+            <td>{{ facturas.descripcion }}</td>
+            <td>{{ facturas.fecha }}</td>
+            <td>{{ facturas.precio }}</td>
+            <td>{{ facturas.localidad }}</td>
+            <td>{{ facturas.estado_nombre }}</td>
+
+            <td>
+                <p-button (click)="eliminarFactura(facturas.id)" label="Eliminar" styleClass="p-button-danger"></p-button>
+                &nbsp;
+                <p-button (click)="actualizarFactura(facturas.id)" label="Actualizar" styleClass="p-button-info"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-panel>
+<p-dialog header="Crear Factura" [(visible)]="visible" appendTo="body">
+    <p>
+        RUC:&nbsp;<input type="text" pInputText [(ngModel)]="facturaNueva.ruc" /><br/>
+        NOMBRE:&nbsp;<input type="text" pInputText [(ngModel)]="facturaNueva.nombre" /><br/>
+        DESCRIPCION:&nbsp;<input type="text" pInputText [(ngModel)]="facturaNueva.descripcion" /><br/>
+        FECHA:&nbsp;<p-calendar [(ngModel)]="facturaNueva.fecha" dateFormat="d/m/yy" dataType="string" appendTo="body" [showTime]="true" [showSeconds]="true"></p-calendar><br/>
+        PRECIO:&nbsp;<input type="text" pInputText [(ngModel)]="facturaNueva.precio" /><br/>
+        LOCALIDAD:&nbsp;<input type="text" pInputText [(ngModel)]="facturaNueva.localidad" /><br/>
+        ESTADO:&nbsp;<p-dropdown [options]="listaEstado" [(ngModel)]="estadoSeleccionado" placeholder="Seleccione un contrato" [editable]="true" optionLabel="nombre"></p-dropdown><br/>
+        <p-button (click)="guardarFactura()" label="Guardar"></p-button>
+    </p>
+</p-dialog>

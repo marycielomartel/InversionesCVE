@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+    color: #333; /* Color de texto, puedes cambiarlo según tu preferencia */
+    font-family: 'Arial', sans-serif; /* Tipo de fuente, puedes cambiarlo según tu preferencia */
+  }
+
+  .cli{
+    padding: 15px;
+  }
+
+  .align-right {
+    margin-right: auto !important;
+  }

@@ -1,0 +1,68 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-home"></i> INICIO
+          </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"> <!-- Ajustando la lista principal -->
+            <li class="nav-item">
+                <a class="nav-link" href="#nosotros">
+                  <i class="fas fa-users"></i> Nosotros
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#equipo">
+                  <i class="fas fa-users"></i> Equipo
+                </a>
+              </li>
+          <li class="nav-item">
+            <a routerLink="/Personal" class="nav-link" *ngIf="authenticated">
+              <i class="fas fa-user"></i> Personal
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/Facturas" class="nav-link" *ngIf="authenticated">
+              <i class="fas fa-file-invoice-dollar"></i> Facturas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/Contratos" class="nav-link" *ngIf="authenticated">
+              <i class="fas fa-file-contract"></i> Contratos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/Cliente" class="nav-link" *ngIf="authenticated">
+              <i class="fas fa-user-tie"></i> Clientes
+            </a>
+          </li>
+        </ul>
+        <div class="ms-auto"> <!-- Mueve este bloque al final, y ajusta las clases -->
+          <ul class="navbar-nav mb-2 mb-lg-0" *ngIf="!authenticated">
+            <li class="nav-item">
+                <a routerLink="/login" class="nav-link">
+                  <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                </a>
+              </li>
+            <li class="nav-item">
+                <a routerLink="/register" class="nav-link">
+                  <i class="fas fa-user-plus"></i> Registrarme
+                </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0" *ngIf="authenticated">
+            <li class="nav-item">
+                <a routerLink="/login" class="nav-link" (click)="logout()">
+                  <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+
